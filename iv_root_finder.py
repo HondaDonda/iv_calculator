@@ -71,7 +71,7 @@ if st.button("Calculate Implied Volatility"):
     try:
         iv = bisection(price, spot, strike, time, rate, rate) 
         col1, col2 = st.columns(2)
-        col1.metric(label="Theoretical Call Implied Volatility", value=f"{iv: .2f}")
+        col1.metric(label="Theoretical Call Implied Volatility", value=f"{iv: .4f}")
         col2.metric(label="Time to Expiry (Years)", value=f"{time: .4f}")
     except Exception as e:
         st.error(f"Execution Error: {e}")
