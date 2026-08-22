@@ -61,33 +61,6 @@ def plotiv(df, lower_iv, upper_iv, min_dte):
         margin=dict(l=20,r=20,b=20,t=50)
     )
     return fig
-    # grid_z_masked = np.ma.masked_invalid(grid_z)
-    # fig = plt.figure(figsize=(12, 8))
-    # ax = fig.add_subplot(111, projection="3d")
-
-    # surf = ax.plot_surface(
-    #     grid_x,
-    #     grid_y,
-    #     grid_z_masked,
-    #     cmap="viridis",
-    #     edgecolor="none",
-    #     antialiased=True,
-    #     rcount=100,
-    #     ccount=100,
-    # )
-
-    # ax.set_xlim(x.min(), x.max())
-    # ax.set_ylim(y.min(), y.max())
-    # ax.set_ylim(df["DTE"].min(), df["DTE"].max())
-
-    # ax.set_xlabel("Strike")
-    # ax.set_ylabel("Days to Expiration (DTE)")
-    # ax.set_zlabel("Implied Volatility")
-    # fig.colorbar(surf, ax=ax, shrink=0.5, aspect=10)
-    # ax.view_init(elev=20, azim=-120)
-
-    # plt.tight_layout()
-    # plt.show()
 
 fig = plotiv(df, .15, 2, 30)
 
