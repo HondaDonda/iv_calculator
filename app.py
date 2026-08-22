@@ -37,7 +37,7 @@ with tab_fetch:
     if st.button("Fetch Option Chain", type="primary"):
         with st.spinner(f"Fetching {opt_type.upper()} chain for {ticker_input}..."):
             try:
-                df = fetch_option_chain(ticker=ticker_input, option_type=opt_type)
+                df = fetch_option_chain(ticker_input, opt_type)
                 st.session_state["chain_df"] = df
                 st.success(
                     f"Successfully fetched {len(df)} {opt_type.upper()} contacts for {ticker_input}. "
