@@ -24,4 +24,3 @@ def fetch_option_chain(ticker: str, opt_type: str) -> pd.DataFrame:
     output_filename = f"{ticker.lower()}_{opt_type.lower()}_options_live.csv"
     df.to_csv(output_filename, index=False)
     return df
-option_chain_fetcher("AMD", "CALL")
