@@ -6,7 +6,6 @@ import plotly.graph_objects as go
 from scipy.ndimage import gaussian_filter
 from scipy.interpolate import Rbf
 from scipy.interpolate import griddata
-matplotlib.use("TkAgg")
 
 df = pd.read_csv("/home/josiah/josiah_code/spy_surface_data.csv")
 
