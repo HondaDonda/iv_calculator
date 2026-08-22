@@ -48,7 +48,7 @@ with tab_fetch:
         st.divider()
 
     st.subheader("Upload Your Own Option Chain")
-    uploaded_chain = st.file_uploader("Choose an option chian CSV", type=["csv"], key="fetch_tab_uploader") 
+    uploaded_chain = st.file_uploader("Choose an option chain CSV", type=["csv"], key="fetch_tab_uploader") 
 
     if uploaded_chain is not None:
         try:
@@ -73,19 +73,22 @@ with tab_surface:
     lower_iv = st.sidebar.slider("Min IV", 0.01, 0.50, 0.05)
     upper_iv = st.sidebar.slider("Max IV", 0.5, 3.00, 2.00)
     min_dte = st.sidebar.slider("Min DTE", 0.0, 30, 3.00)
-
-    if uploaded_file is not None:
-        old_rows = len(raw_df)
-        raw_df = pd.read_csv(uploaded_file)
-        clean_df = clean_option_data(raw_df)
-        st.success(f"Data cleaned successfully! ({len(raw_df)}) originally.  ({len(clean_df)}) rows remaining. ")
-        fig = plotiv(df_clean, lower_iv, upper_iv, min_dte)
-        if fig is not None:
-            st.plotly_chart(fig, use_container_width=True)
-        else:
-            st.warning("No data points found matching current filter thresholds.")
-    else:
-        st.info("Upload a CSV file in the sidebar to view the interactive 3D IV surface. ") 
+    # HARD CODED CSV SURFACE DATA
+    df_clean = pd.read_csv("spy_surface_data.csv")
+    fig = plotiv(df_clean, lower_iv, upper_iv, min_dte)
+    st.plotly_chart(fig, use_container_width=True )
+    # if uploaded_file is not None:
+    #     old_rows = len(raw_df)
+    #     raw_df = pd.read_csv(uploaded_file)
+    #     clean_df = clean_option_data(raw_df)
+    #     st.success(f"Data cleaned successfully! ({len(raw_df)}) originally.  ({len(clean_df)}) rows remaining. ")
+    #     fig = plotiv(df_clean, lower_iv, upper_iv, min_dte)
+    #     if fig is not None:
+    #         st.plotly_chart(fig, use_container_width=True)
+    #     else:
+    #         st.warning("No data points found matching current filter thresholds.")
+    # else:
+    #     st.info("Upload a CSV file in the sidebar to view the interactive 3D IV surface. ") 
 
 
 with tab_iv:
