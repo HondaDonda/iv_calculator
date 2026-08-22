@@ -2,8 +2,6 @@ import pandas as pd
 import numpy as np
 import os
 
-base_name = os.path.splitext(os.path.basename())
-
 def find_atm(df):
     match = df[df["inTheMoney"] == False]
     
@@ -15,6 +13,7 @@ def find_atm(df):
         return 0 
 
 def clean_option_data(file_path):
+    base_name = os.path.splitext(os.path.basename(file_path))
     columns_order = [
         "strike",
         "impliedVolatility",
