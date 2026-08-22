@@ -7,7 +7,7 @@ from scipy.ndimage import gaussian_filter
 from scipy.interpolate import Rbf
 from scipy.interpolate import griddata
 
-df = pd.read_csv("/home/josiah/josiah_code/spy_surface_data.csv")
+df = pd.read_csv("spy_surface_data.csv")
 
 def plotiv(df, lower_iv, upper_iv, min_dte): 
     
