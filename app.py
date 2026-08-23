@@ -60,7 +60,7 @@ with tab_fetch:
     
     if st.session_state["chain_df"] is not None:
         st.divider()
-        st.dataFrame(st.session_state["chain_df"], use_container_width=True)
+        st.dataframe(st.session_state["chain_df"], use_container_width=True)
 
 
     if st.session_state["chain_df"] is not None:
