@@ -70,9 +70,9 @@ with tab_fetch:
 
 with tab_surface:
     st.sidebar.header("Surface Parameters")
-    lower_iv = st.sidebar.slider("Min IV", 0.01, 0.50, 0.05)
-    upper_iv = st.sidebar.slider("Max IV", 0.5, 3.00, 2.00)
-    min_dte = st.sidebar.slider("Min DTE", 0.0, 30.0, 3.00)
+    lower_iv = st.sidebar.slider("Min IV", min_value=0.01, max_value=0.50, step=0.05)
+    upper_iv = st.sidebar.slider("Max IV", min_value=0.5, max_value=3.00, step=2.00)
+    min_dte = st.sidebar.slider("Min DTE", min_value=0.0, max_value=30.0, step=3.00)
     # HARD CODED CSV SURFACE DATA
     df_clean = pd.read_csv("spy_surface_data.csv")
     fig = plotiv(df_clean, lower_iv, upper_iv, min_dte)
@@ -95,6 +95,8 @@ with tab_iv:
 
     st.subheader("Black-Scholes Implied Volatility Calculator")
     st.markdown("Input parameters on sidebar to calculate implied volatility of European Call or Put.")
+    st.text("The equation below is the math behind the Black-Scholes Pricing Model.")
+    st.latex("C = S e^{(b-r)t} N(d_1) - X e^{-rt} N(d_2)")
     st.sidebar.header("Model Inputs")
     price = st.sidebar.number_input("Option Price ($P$)", value=0.0, step=.01)
     spot = st.sidebar.number_input("Underlying Spot Price ($S$)", value=100.0, step=.01)
@@ -139,7 +141,7 @@ with tab_iv:
         try:
             iv = bisection(opt_type, price, spot, strike, time, rate, rate) 
             col1, col2 = st.columns(2)
-            col1.metric(label="Theoretical Call Implied Volatility", value=f"{iv: .4f}")
+            col1.metric(label="Theoretical Call Implied Volatility", value=f"{iv - 1: .4f}")
             col2.metric(label="Time to Expiry (Years)", value=f"{time: .4f}")
         except Exception as e:
             st.error(f"Execution Error: {e}")
