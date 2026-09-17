@@ -25,7 +25,7 @@ tab_fetch, tab_surface, tab_iv = st.tabs(
 )
 
 with tab_fetch:
-    st.subheader("Fetch Live Option Chain")
+    st.subheader("Fetch Live OptionChain")
     col1, col2 = st.columns([2, 1])
     with col1:
         ticker_input = st.text_input("Ticker Symbol", value="SPY").upper()
@@ -96,7 +96,11 @@ with tab_iv:
     st.subheader("Black-Scholes Implied Volatility Calculator")
     st.markdown("Input parameters on sidebar to calculate implied volatility of European Call or Put.")
     st.text("The equation below is the math behind the Black-Scholes Pricing Model.")
-    st.latex("C = S e^{(b-r)t} N(d_1) - X e^{-rt} N(d_2)")
+    st.latex("\text{Call Equation} C = S e^{(b-r)t} N(d_1) - X e^{-rt} N(d_2)")
+    st.latex("\text{Put Equation} P = X e^{-rt} N(-d_2) - S e^{(b-r)t} N(-d_1)")
+    st.latex("\text{Where} d_1 \text{&} d_2 are the following.")
+    st.latex("d_1 = \frac{\ln\left(\frac{S}{X}\right) + \left(b + \frac{\sigma^2}{2}\right)t}{\sigma \sqrt{t}}")
+    st.latex("d_2 = \frac{\ln\left(\frac{S}{X}\right) + \left(b - \frac{\sigma^2}{2}\right)t}{\sigma \sqrt{t}} = d_1 - \sigma \sqrt{t}")
     st.sidebar.header("Model Inputs")
     price = st.sidebar.number_input("Option Price ($P$)", value=0.0, step=.01)
     spot = st.sidebar.number_input("Underlying Spot Price ($S$)", value=100.0, step=.01)
@@ -139,9 +143,9 @@ with tab_iv:
 
     if st.button("Calculate Implied Volatility"):
         try:
-            iv = bisection(opt_type, price, spot, strike, time, rate, rate) 
+            iv = (bisection(opt_type, price, spot, strike, time, rate, rate) - 1)
             col1, col2 = st.columns(2)
-            col1.metric(label="Theoretical Call Implied Volatility", value=f"{iv - 1: .4f}")
+            col1.metric(label="Theoretical Call Implied Volatility", value=f"{iv : .4f}")
             col2.metric(label="Time to Expiry (Years)", value=f"{time: .4f}")
         except Exception as e:
             st.error(f"Execution Error: {e}")
