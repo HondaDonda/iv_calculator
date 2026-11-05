@@ -93,8 +93,7 @@ with tab_surface:
 
 with tab_iv:
 
-st.text("The equation below is the math behind the Black-Scholes Pricing Model.")
-
+    st.text("The equation below is the math behind the Black-Scholes Pricing Model.")
     st.text("The equation below is the math behind the Black-Scholes Pricing Model.")
     st.markdown("**Call price**")
     st.latex(r"C = S e^{(b-r)t} N(d_1) - X e^{-rt} N(d_2)")
