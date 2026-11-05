@@ -72,12 +72,14 @@ with tab_surface:
     st.header("Surface Parameters")
     col_min, col_max, col_dte = st.columns(3)
     with col_min:
-        lower_iv = st.sidebar.slider("Min IV", min_value=0.01, max_value=0.50, step=0.05)
+        lower_iv = st.slider("Min IV", min_value=0.01, max_value=0.50, step=0.05)
     with col_max:
-        upper_iv = st.sidebar.slider("Max IV", min_value=0.5, max_value=3.00, step=2.00)
+        upper_iv = st.slider("Max IV", min_value=0.5, max_value=3.00, step=.05)
     with col_dte:
-        min_dte = st.sidebar.slider("Min DTE", min_value=0.0, max_value=30.0, step=3.00)
+        min_dte = st.slider("Min DTE", min_value=0.0, max_value=30.0, step=.05)
+
     st.divider()
+
     # HARD CODED CSV SURFACE DATA
     df_clean = pd.read_csv("spy_surface_data.csv")
     fig = plotiv(df_clean, lower_iv, upper_iv, min_dte)
