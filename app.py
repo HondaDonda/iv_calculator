@@ -126,7 +126,7 @@ with tab_iv:
     if "rate" not in st.session_state:
         st.session_state.rate = 0.05
 
-    col_a, col_b = st.sidebar.columns([3,1])
+    col_a, col_b = st.columns([3,1])
     with col_a:
         st.slider(
             "Days to Expiration", min_value=1, max_value=365, value=st.session_state.expiry_days, key="expiry_slider", on_change=sync_expiry_from_slider
@@ -137,7 +137,7 @@ with tab_iv:
             step=1, on_change=sync_expiry_from_box, label_visibility="collapsed"
         )
 
-    col_c, col_d = st.sidebar.columns([3,1])
+    col_c, col_d = st.columns([3,1])
     with col_c:
         st.slider(
             "Risk-Free Interest Rate", min_value=0.0, max_value=.15, value=st.session_state.rate, key="rate_slider", step=.001,
