@@ -121,9 +121,6 @@ with tab_iv:
 
     st.divider()
 
-    opt_type = st.segmented_control(
-        "Option Type", options=["call", "put"], default="call"
-    )
     if "expiry_days" not in st.session_state:
         st.session_state.expiry_days = 38
     if "rate" not in st.session_state:
@@ -151,6 +148,9 @@ with tab_iv:
             "Rate", min_value=0.0, max_value=.15, value=st.session_state.rate, key="rate_box",
             step=.001, format="%.4f", on_change=sync_rate_from_box, label_visibility="collapsed"
         )
+    opt_type = st.segmented_control(
+        "Option Type", options=["call", "put"], default="call"
+    )
     expiry_days = st.session_state.expiry_days
     rate = st.session_state.rate
     time = expiry_days/365.0
