@@ -95,49 +95,49 @@ def sync_rate_from_box():
 # option1 = Option(0,0)
 # option1.price = black_scholes_EU_call(spot, exercise, time, variation, interest_rate, iv)
 # #---
-st.title("Black-Scholes Implied Volatility Calculator")
-st.markdown("Input parameters on sidebar to calculate implied volatility of European Call or Put.")
-st.sidebar.header("Model Inputs")
-price = st.sidebar.number_input("Option Price ($P$)", value=0.0, step=.01)
-spot = st.sidebar.number_input("Underlying Spot Price ($S$)", value=100.0, step=.01)
-strike = st.sidebar.number_input("Strike/Exercise Price ($X$)", value=100.0, step=.01)
+# st.title("Black-Scholes Implied Volatility Calculator")
+# st.markdown("Input parameters on sidebar to calculate implied volatility of European Call or Put.")
+# st.sidebar.header("Model Inputs")
+# price = st.sidebar.number_input("Option Price ($P$)", value=0.0, step=.01)
+# spot = st.sidebar.number_input("Underlying Spot Price ($S$)", value=100.0, step=.01)
+# strike = st.sidebar.number_input("Strike/Exercise Price ($X$)", value=100.0, step=.01)
 
-if "expiry_days" not in st.session_state:
-    st.session_state.expiry_days = 38
-if "rate" not in st.session_state:
-    st.session_state.rate = 0.05
+# if "expiry_days" not in st.session_state:
+#     st.session_state.expiry_days = 38
+# if "rate" not in st.session_state:
+#     st.session_state.rate = 0.05
 
-col_a, col_b = st.sidebar.columns([3,1])
-with col_a:
-    st.slider(
-        "Days to Expiration", min_value=1, max_value=365, value=st.session_state.expiry_days, key="expiry_slider", on_change=sync_expiry_from_slider
-    )
-with col_b:
-    st.number_input(
-        "Days", min_value=1, max_value=365, value=st.session_state.expiry_days, key="expiry_box",
-        step=1, on_change=sync_expiry_from_box, label_visibility="collapsed"
-    )
+# col_a, col_b = st.sidebar.columns([3,1])
+# with col_a:
+#     st.slider(
+#         "Days to Expiration", min_value=1, max_value=365, value=st.session_state.expiry_days, key="expiry_slider", on_change=sync_expiry_from_slider
+#     )
+# with col_b:
+#     st.number_input(
+#         "Days", min_value=1, max_value=365, value=st.session_state.expiry_days, key="expiry_box",
+#         step=1, on_change=sync_expiry_from_box, label_visibility="collapsed"
+#     )
 
-col_c, col_d = st.sidebar.columns([3,1])
-with col_c:
-    st.slider(
-        "Risk-Free Interest Rate", min_value=0.0, max_value=.15, value=st.session_state.rate, key="rate_slider", step=.001,
-        on_change=sync_rate_from_slider
-    )
-with col_d:
-    st.number_input(
-        "Rate", min_value=0.0, max_value=.15, value=st.session_state.rate, key="rate_box",
-        step=.001, format="%.4f", on_change=sync_rate_from_box, label_visibility="collapsed"
-    )
-expiry_days = st.session_state.expiry_days
-rate = st.session_state.rate
-time = expiry_days/365.0
+# col_c, col_d = st.sidebar.columns([3,1])
+# with col_c:
+#     st.slider(
+#         "Risk-Free Interest Rate", min_value=0.0, max_value=.15, value=st.session_state.rate, key="rate_slider", step=.001,
+#         on_change=sync_rate_from_slider
+#     )
+# with col_d:
+#     st.number_input(
+#         "Rate", min_value=0.0, max_value=.15, value=st.session_state.rate, key="rate_box",
+#         step=.001, format="%.4f", on_change=sync_rate_from_box, label_visibility="collapsed"
+#     )
+# expiry_days = st.session_state.expiry_days
+# rate = st.session_state.rate
+# time = expiry_days/365.0
 
-# expiry_days = st.sidebar.slider("Days to Expiration", min_value=1, max_value=365, value=38)
-# rate = st.sidebar.slider("Risk-Free Interest Rate", min_value=0.0, max_value=.15, value=0.05, step=.001)
-opt_type = st.sidebar.segmented_control(
-    "Option Type", options=["call", "put"], default="call"
-)
+# # expiry_days = st.sidebar.slider("Days to Expiration", min_value=1, max_value=365, value=38)
+# # rate = st.sidebar.slider("Risk-Free Interest Rate", min_value=0.0, max_value=.15, value=0.05, step=.001)
+# opt_type = st.sidebar.segmented_control(
+#     "Option Type", options=["call", "put"], default="call"
+# )
 
 if st.button("Calculate Implied Volatility"):
     try:
