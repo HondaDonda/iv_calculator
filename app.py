@@ -69,7 +69,7 @@ with tab_fetch:
 
 
 with tab_surface:
-    st.sidebar.header("Surface Parameters")
+    st.header("Surface Parameters")
     col_min, col_max, col_dte = st.columns(3)
     with col_min:
         lower_iv = st.sidebar.slider("Min IV", min_value=0.01, max_value=0.50, step=0.05)
