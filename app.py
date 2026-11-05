@@ -121,6 +121,9 @@ with tab_iv:
 
     st.divider()
 
+    opt_type = st.segmented_control(
+        "Option Type", options=["call", "put"], default="call"
+    )
     if "expiry_days" not in st.session_state:
         st.session_state.expiry_days = 38
     if "rate" not in st.session_state:
@@ -152,9 +155,6 @@ with tab_iv:
     rate = st.session_state.rate
     time = expiry_days/365.0
 
-    opt_type = st.segmented_control(
-        "Option Type", options=["call", "put"], default="call"
-    )
 
     if st.button("Calculate Implied Volatility"):
         try:
