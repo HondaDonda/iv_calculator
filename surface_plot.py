@@ -55,7 +55,7 @@ def plotiv(df, lower_iv, upper_iv, min_dte):
             xaxis_title="Strike",
             yaxis_title="DTE",
             zaxis_title="Implied Volatility",
-            camera=dict(eye=dict(x=10, y=10, z=0.8))
+            camera=dict(eye=dict(x=5, y=5, z=5))
         ),
         height=700,
         margin=dict(l=20,r=20,b=20,t=50)
