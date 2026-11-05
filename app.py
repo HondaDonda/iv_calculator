@@ -93,15 +93,23 @@ with tab_surface:
 
 with tab_iv:
 
+st.text("The equation below is the math behind the Black-Scholes Pricing Model.")
+
+    st.text("The equation below is the math behind the Black-Scholes Pricing Model.")
+    st.markdown("**Call price**")
+    st.latex(r"C = S e^{(b-r)t} N(d_1) - X e^{-rt} N(d_2)")
+
+    st.markdown("**Put price**")
+    st.latex(r"P = X e^{-rt} N(-d_2) - S e^{(b-r)t} N(-d_1)")
+
+    st.markdown("**where $d_1$ and $d_2$ are:**")
+    st.latex(r"d_1 = \frac{\ln\left(\frac{S}{X}\right) + \left(b + \frac{\sigma^2}{2}\right)t}{\sigma \sqrt{t}}")
+    st.latex(r"d_2 = \frac{\ln\left(\frac{S}{X}\right) + \left(b - \frac{\sigma^2}{2}\right)t}{\sigma \sqrt{t}} = d_1 - \sigma \sqrt{t}")
+
+
+
     st.subheader("Black-Scholes Implied Volatility Calculator")
     st.markdown("Input parameters on sidebar to calculate implied volatility of European Call or Put.")
-    st.text("The equation below is the math behind the Black-Scholes Pricing Model.")
-    st.latex("\text{Call Equation} C = S e^{(b-r)t} N(d_1) - X e^{-rt} N(d_2)")
-    st.latex("\text{Put Equation} P = X e^{-rt} N(-d_2) - S e^{(b-r)t} N(-d_1)")
-    st.latex("\text{Where} d_1 \text{&} d_2 are the following.")
-    st.latex("d_1 = \frac{\ln\left(\frac{S}{X}\right) + \left(b + \frac{\sigma^2}{2}\right)t}{\sigma \sqrt{t}}")
-    st.latex("d_2 = \frac{\ln\left(\frac{S}{X}\right) + \left(b - \frac{\sigma^2}{2}\right)t}{\sigma \sqrt{t}} = d_1 - \sigma \sqrt{t}")
-    st.sidebar.header("Model Inputs")
     price = st.sidebar.number_input("Option Price ($P$)", value=0.0, step=.01)
     spot = st.sidebar.number_input("Underlying Spot Price ($S$)", value=100.0, step=.01)
     strike = st.sidebar.number_input("Strike/Exercise Price ($X$)", value=100.0, step=.01)
