@@ -114,10 +114,12 @@ with tab_iv:
 
 
     st.subheader("Black-Scholes Implied Volatility Calculator")
-    st.markdown("Input parameters on sidebar to calculate implied volatility of European Call or Put.")
-    price = st.sidebar.number_input("Option Price ($P$)", value=0.0, step=.01)
-    spot = st.sidebar.number_input("Underlying Spot Price ($S$)", value=100.0, step=.01)
-    strike = st.sidebar.number_input("Strike/Exercise Price ($X$)", value=100.0, step=.01)
+    st.markdown("Input parameters below to calculate implied volatility of European Call or Put.")
+    price = st.number_input("Option Price ($P$)", value=0.0, step=.01)
+    spot = st.number_input("Underlying Spot Price ($S$)", value=100.0, step=.01)
+    strike = st.number_input("Strike/Exercise Price ($X$)", value=100.0, step=.01)
+
+    st.divider()
 
     if "expiry_days" not in st.session_state:
         st.session_state.expiry_days = 38
@@ -150,7 +152,7 @@ with tab_iv:
     rate = st.session_state.rate
     time = expiry_days/365.0
 
-    opt_type = st.sidebar.segmented_control(
+    opt_type = st.segmented_control(
         "Option Type", options=["call", "put"], default="call"
     )
 
